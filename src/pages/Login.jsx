@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/best for you.png'
 import './Login.css'
 import { useContext } from 'react';
@@ -9,10 +9,13 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     const {signIn, google}=useContext(AuthContext)
+    const navigate = useNavigate()
+    const location =useLocation();
 
     const handleGoogleLogin= async()=>{
         try{
           await google()
+          navigate(location?.state? location.state:'/')
           Swal.fire({
                
             text: "User login successfully",
@@ -44,6 +47,7 @@ const Login = () => {
         try{
             const result = await signIn(email,password)
             console.log(result)
+            navigate(location?.state? location.state:'/')
             Swal.fire({
                
                 text: "User login successfully",

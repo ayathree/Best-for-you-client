@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/best for you.png'
 import './Login.css'
 import { useContext } from 'react';
@@ -6,7 +6,8 @@ import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-    const{createUser,updateUser}=useContext(AuthContext)
+    const{createUser,updateUser,loggedOut}=useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleRegister=async e=>{
         e.preventDefault();
@@ -23,6 +24,8 @@ const Register = () => {
             console.log(result)
             await updateUser(name, image)
             form.reset();
+            navigate('/' )
+            loggedOut();
             Swal.fire({
                
                 text: "User register successfully",

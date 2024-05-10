@@ -10,9 +10,14 @@ const Nav = () => {
     const links = <>
     <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/'}><li className='text-white'>Home</li></NavLink>
       <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/que'}><li className='text-white'>Queries </li></NavLink>
-      <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/forRecommend'}><li className='text-white'>Recommendations For Me</li></NavLink>
+     {
+      user && <div className='flex lg:flex-row flex-col lg:gap-6'>
+         <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/forRecommend'}><li className='text-white'>Recommendations For Me</li></NavLink>
       <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/myQue'}><li className='text-white'>My Queries</li></NavLink>
       <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/myRecommend'}><li className='text-white'>My recommendations</li></NavLink>
+      </div>
+     
+     }
     
     </>
    
