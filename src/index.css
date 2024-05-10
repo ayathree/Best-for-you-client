@@ -4,7 +4,12 @@
 
 
 body{
-    background-color: rgb(247, 214, 145);
-    width: 100%;
-    height: 100%;
+    /* background-color: rgb(247, 214, 145); */
+    background-image:linear-gradient(rgba(61, 59, 59, 0.808),
+    rgba(0, 0, 0, 0.801)),  url(./assets/cover.jpg);
+    
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
