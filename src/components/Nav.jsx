@@ -1,7 +1,11 @@
 import {  Link, NavLink } from 'react-router-dom';
 import logo from '../assets/best for you.png'
+import { useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
  
 const Nav = () => {
+  const{user, loggedOut}=useContext(AuthContext)
+ 
 
     const links = <>
     <NavLink className={({isActive})=>isActive?'underline underline-offset-4 text-white':''} to={'/'}><li className='text-white'>Home</li></NavLink>
@@ -36,7 +40,21 @@ const Nav = () => {
     </ul>
   </div>
   <div className="navbar-end ">
-    <Link to={'/login'}><button className="btn">Login</button></Link>
+   {
+    !user &&  <Link to={'/login'}><button className="btn">Log In</button></Link>
+   }
+   {
+    user && <div className=' flex flex-row gap-3 items-center' >
+    <div tabIndex={0} role="" className="btn btn-ghost btn-circle avatar  tooltip tooltip-bottom lg:tooltip-left" data-tip={user.displayName}>
+      <div className="w-10 rounded-full">
+        <img referrerPolicy='no-referrer' alt="Tailwind CSS Navbar component" src={user.photoURL} />
+      </div>
+    </div>
+    <button onClick={loggedOut} className="btn">Log Out</button>
+  </div>
+   }
+    
+  
   </div>
 </div>
     );
