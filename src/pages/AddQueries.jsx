@@ -1,11 +1,72 @@
+import { useContext } from 'react';
 import './Login.css'
+import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddQueries = () => {
+    const{user}=useContext(AuthContext)
+    const navigate = useNavigate()
+    const currentTime = Date.now();
+    const currentDate = new Date(currentTime);
+    const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDate();
+const hours = currentDate.getHours();
+const minutes = currentDate.getMinutes();
+const seconds = currentDate.getSeconds();
+
+    const handleAddQuery = async e =>{
+        e.preventDefault();
+        const form = e.target;
+        const productName = form.name.value;
+        const productBrand = form.brand.value;
+        const productImage = form.image.value;
+        const title = form.title.value;
+        const boycotting =form.reason.value;
+        const newProductsData = {productName,productBrand,productImage,title,boycotting,
+            queryUser:{
+                email: user?.email,
+                name: user?.displayName,
+                photo: user?.photoURL,
+                time:(`${hours}:${minutes}:${seconds}`),
+                date:(`${month}-${day}-${year}`),
+                recommendationCount:0,
+
+
+            }
+        }
+        console.log(newProductsData)
+
+        try{
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/products`, newProductsData)
+            console.log(data)
+            form.reset();
+            if (data.insertedId) {
+                
+                Swal.fire({
+               
+                    text: "added query successfully",
+                    icon: "success"
+                  });
+                navigate('/myQue')
+            }
+        }
+        catch(err){
+            console.log(err)
+            Swal.fire({
+               
+                text: "An error occurred",
+                icon: "error"
+              });
+        }
+    }
     return (
         <section className="max-w-4xl cover p-6 mx-auto  rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-lg font-semibold text-white capitalize dark:text-white">My queries</h2>
     
-        <form>
+        <form onSubmit={handleAddQuery}>
             <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                 <div>
                     <label className="text-white dark:text-gray-200"htmlFor="username">Product Name</label>
