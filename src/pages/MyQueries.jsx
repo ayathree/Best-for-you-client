@@ -13,11 +13,14 @@ const MyQueries = () => {
             const {data} =await axios (
                 `${import.meta.env.VITE_API_URL}/products/${user?.email}`
             )
-            setInfos(data)
+            const sortedData = data.sort((a, b) => b.timestamp - a.timestamp);
+            setInfos(sortedData)
         }
         getData()
     },[user])
-    console.log(infos)
+   
+
+   
     return (
         <div>
             <header className="cover dark:bg-gray-900 mt-10">
@@ -53,7 +56,7 @@ const MyQueries = () => {
 
 <div className='flex flex-col lg:flex-row justify-center items-center gap-6' >
 {
-    infos.length>0 ?(infos.sort((a, b) => b.timestamp - a.timestamp).map(info=><div key={info._id} className="max-w-xs overflow-hidden  mt-16 cover rounded-lg shadow-lg dark:bg-gray-800">
+    infos.length>0 ?(infos.map(info=><div key={info._id} className="max-w-xs overflow-hidden  mt-16 cover rounded-lg shadow-lg dark:bg-gray-800">
     <div className="px-4 py-2">
         <h1 className="text-xl font-bold text-white uppercase dark:text-white">{info.productName}</h1>
         <p className="mt-1 text-sm text-white dark:text-gray-400">{info.title}</p>
@@ -63,7 +66,7 @@ const MyQueries = () => {
 
     <div className="flex items-center justify-center gap-4 px-4 py-6 ">
        
-        <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">View Details</button>
+       <Link to={`/queDetails/${info._id}`}> <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">View Details</button></Link>
         <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Update</button>
         <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Delete</button>
     </div>

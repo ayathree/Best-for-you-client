@@ -1,0 +1,58 @@
+import { useLoaderData } from 'react-router-dom';
+import './Login.css'
+
+const QueryDetails = () => {
+    const info = useLoaderData();
+    const{productImage,queryUser,title,boycotting,productName,productBrand}=info || {}
+    return (
+        <section className="cover mt-16 dark:bg-gray-900">
+        <div className="container px-6 py-10 mx-auto">
+            
+    
+            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+                <div>
+                    <div className="relative">
+                        <img className="object-cover object-center w-full h-64 rounded-lg lg:h-80" src={productImage} alt="" />
+    
+                        <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
+                            <img className="object-cover object-center w-10 h-10 rounded-full" src={queryUser.photo} alt="" />
+    
+                            <div className="mx-4">
+                                <h1 className="text-sm text-gray-700 dark:text-gray-200">{queryUser.name}</h1>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">{queryUser.email}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <h1 className="mt-6 text-xl font-semibold text-white dark:text-white">
+                        {title}
+                    </h1>
+    
+                    <hr className="w-32 my-6 text-blue-500" />
+    
+                    <p className="text-sm text-white dark:text-gray-400">
+                       <span className='text-xl font-semibold'> Alternation reason:</span> {boycotting}
+                    </p>
+                    <hr className="w-32 my-6 text-blue-500" />
+                    <p className="text-sm text-white dark:text-gray-400">
+                       <span className='text-xl font-semibold'> Product Information:</span> 
+                       <ul>
+                        <li>Product Name : {productName}</li>
+                        <li>Brand : {productBrand}</li>
+                        <li>Date Posted : {queryUser.date}</li>
+                        
+                       </ul>
+                    </p>
+                    <p className='text-white'>Recommendation : {queryUser.recommendationCount}</p>
+    
+                    
+                </div>
+    
+               
+            </div>
+        </div>
+    </section>
+    );
+};
+
+export default QueryDetails;

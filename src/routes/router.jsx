@@ -9,6 +9,7 @@ import MyRecommend from "../pages/MyRecommend";
 import Register from "../pages/Register";
 import PrivateRoute from "../provider/PrivateRoute";
 import AddQueries from "../pages/AddQueries";
+import QueryDetails from "../pages/QueryDetails";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
         {
             path:'/addQue',
             element:<PrivateRoute><AddQueries></AddQueries></PrivateRoute>
+        },
+        {
+            path:'/queDetails/:id',
+            element:<QueryDetails></QueryDetails>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`)
         }
 
       ]
