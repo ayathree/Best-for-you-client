@@ -1,15 +1,16 @@
 import { useLoaderData } from 'react-router-dom';
 import './Login.css'
+import AddRecommend from '../components/AddRecommend';
 
 const QueryDetails = () => {
     const info = useLoaderData();
     const{productImage,queryUser,title,boycotting,productName,productBrand}=info || {}
     return (
-        <section className="cover mt-16 dark:bg-gray-900">
+        <section className=" mt-16 dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
             
     
-            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-2">
                 <div>
                     <div className="relative">
                         <img className="object-cover object-center w-full h-64 rounded-lg lg:h-80" src={productImage} alt="" />
@@ -47,9 +48,15 @@ const QueryDetails = () => {
     
                     
                 </div>
+                <div>
+                   
+                    <AddRecommend></AddRecommend>
+                </div>
     
                
             </div>
+            <p className='text-3xl font-bold mt-20 text-white text-center underline underline-offset-4'>All Recommendations</p>
+            
         </div>
     </section>
     );
