@@ -87,9 +87,9 @@ const MyQueries = () => {
 
 </div>
 
-<div className='flex flex-col lg:flex-row justify-center items-center gap-6' >
+<div className='grid grid-cols-1 lg:grid-cols-3 justify-center items-center gap-6' >
 {
-    infos.length>0 ?(infos.map(info=><div key={info._id} className="max-w-xs overflow-hidden  mt-16 cover rounded-lg shadow-lg dark:bg-gray-800">
+    infos.length>0 ?(infos.map(info=><div key={info._id} className="max-w-lg overflow-hidden  mt-16 cover rounded-lg shadow-lg dark:bg-gray-800">
     <div className="px-4 py-2">
         <h1 className="text-xl font-bold text-white uppercase dark:text-white">{info.productName}</h1>
         <p className="mt-1 text-sm text-white dark:text-gray-400">{info.title}</p>

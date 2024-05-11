@@ -5,13 +5,19 @@ import Footer from "../components/Footer";
 
 const Root = () => {
     return (
-        <div className='container mx-auto  lg:px-3 py-8 px-3 '>
+        <div >
+            <div className='container mx-auto  lg:px-3 py-8 px-3 '>
             <Nav></Nav>
+            </div>
             
             
+            <div className='container mx-auto  lg:px-3 py-8 px-3 '>
             <Outlet></Outlet>
+            </div>
             
-            <Footer></Footer>
+           <div className='container mx-auto  lg:px-3 py-8 px-3 '>
+           <Footer></Footer>
+           </div>
 
             
 

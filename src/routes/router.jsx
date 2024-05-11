@@ -33,7 +33,8 @@ const router = createBrowserRouter([
         },
         {
             path:'/que',
-            element:<Queries></Queries>
+            element:<Queries></Queries>,
+            loader:()=>fetch(`${import.meta.env.VITE_API_URL}/products`)
         },
         {
             path:'/forRecommend',
