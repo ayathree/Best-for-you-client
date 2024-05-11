@@ -4,20 +4,91 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const MyQueries = () => {
     const{user}=useContext(AuthContext)
     const [infos, setInfos]=useState([])
     useEffect(()=>{
-        const getData = async()=>{
-            const {data} =await axios (
-                `${import.meta.env.VITE_API_URL}/products/${user?.email}`
-            )
-            const sortedData = data.sort((a, b) => b.timestamp - a.timestamp);
-            setInfos(sortedData)
-        }
+        
         getData()
+        
     },[user])
+    const getData = async()=>{
+        const {data} =await axios (
+            `${import.meta.env.VITE_API_URL}/products/${user?.email}`
+        )
+      
+        setInfos(data)
+    }
+
+    // const handleDelete=async id=>{
+    //     try{
+    //         Swal.fire({
+    //             title: "Are you sure?",
+    //             text: "Are you want to delete this!",
+    //             icon: "warning",
+    //             showCancelButton: true,
+    //             confirmButtonColor: "#3085d6",
+    //             cancelButtonColor: "#d33",
+    //             confirmButtonText: "Yes, delete it!"
+    //           })
+
+    //           const {data} =await axios.delete (
+    //             `${import.meta.env.VITE_API_URL}/product/${id}`
+    //         )
+    //         console.log(data)
+                
+
+    //             if (data.deletedCount>0) {
+    //               Swal.fire({
+    //                 title: "Deleted!",
+    //                 text: "Your item has been deleted.",
+    //                 icon: "success"
+    //               });
+    //             }
+              
+    //     }
+    //     catch(err){
+    //         console.log(err)
+    //         Swal.fire({
+               
+    //             text: "An error occurred",
+    //             icon: "error"
+    //           });
+
+    //     }
+           
+    // }
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Are you sure to delete this?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch( `${import.meta.env.VITE_API_URL}/product/${id}`, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Item has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                       getData()
+                    });
+            }
+        });
+    };
    
 
    
@@ -68,7 +139,7 @@ const MyQueries = () => {
        
        <Link to={`/queDetails/${info._id}`}> <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">View Details</button></Link>
         <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Update</button>
-        <button className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Delete</button>
+        <button onClick={()=>handleDelete(info._id)} className="px-2 py-2 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Delete</button>
     </div>
 </div>))   :(
     <div className="flex flex-col mt-16 items-center justify-center">
