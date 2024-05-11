@@ -10,6 +10,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "../provider/PrivateRoute";
 import AddQueries from "../pages/AddQueries";
 import QueryDetails from "../pages/QueryDetails";
+import UpdateQuery from "../pages/UpdateQuery";
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
         {
             path:'/queDetails/:id',
             element:<PrivateRoute><QueryDetails></QueryDetails></PrivateRoute>,
+            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`)
+        },
+        {
+            path:'/updateQue/:id',
+            element:<PrivateRoute><UpdateQuery></UpdateQuery></PrivateRoute>,
             loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`)
         }
 
