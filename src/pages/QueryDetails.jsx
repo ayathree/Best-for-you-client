@@ -3,7 +3,7 @@ import './Login.css'
 import AddRecommend from '../components/AddRecommend';
 import AllRecommend from '../components/AllRecommend';
 import { useEffect, useState } from 'react';
-import { data } from 'autoprefixer';
+// import { data } from 'autoprefixer';
 
 const QueryDetails = () => {
     const info = useLoaderData();
