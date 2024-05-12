@@ -3,11 +3,12 @@ import './Login.css'
 import AddRecommend from '../components/AddRecommend';
 import AllRecommend from '../components/AllRecommend';
 import { useEffect, useState } from 'react';
+import { data } from 'autoprefixer';
 
 const QueryDetails = () => {
     const info = useLoaderData();
     const [recommends, setRecommends]=useState()
-    const{productImage,queryUser,title,boycotting,productName,productBrand,_id}=info || {}
+    const{productImage,queryUser,title,boycotting,productName,productBrand,_id,recommendationCount}=info || {}
 
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_API_URL}/recommend/${_id}`)
@@ -17,7 +18,9 @@ const QueryDetails = () => {
             setRecommends(data)
         })
 
-    },[_id])
+    },[])
+
+   
     return (
         <section className=" mt-16 dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
@@ -57,13 +60,13 @@ const QueryDetails = () => {
                         
                        </ul>
                     </p>
-                    <p className='text-white'>Recommendation : {queryUser.recommendationCount}</p>
+                    <p className='text-white'>Recommendation : {recommendationCount}</p>
     
                     
                 </div>
                 <div>
                    
-                    <AddRecommend info={info}></AddRecommend>
+                    <AddRecommend info={info} ></AddRecommend>
                 </div>
     
                
@@ -71,7 +74,7 @@ const QueryDetails = () => {
             <p className='text-3xl font-bold mt-20 text-white text-center underline underline-offset-4'>All Recommendations</p>
 
            
-            {/* <AllRecommend></AllRecommend> */}
+           
             
         </div>
         <div >

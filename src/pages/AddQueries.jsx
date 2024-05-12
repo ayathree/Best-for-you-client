@@ -25,14 +25,14 @@ const seconds = currentDate.getSeconds();
         const productImage = form.image.value;
         const title = form.title.value;
         const boycotting =form.reason.value;
-        const newProductsData = {productName,productBrand,productImage,title,boycotting,
+        const recommendationCount = 0;
+        const newProductsData = {productName,productBrand,recommendationCount,productImage,title,boycotting,
             queryUser:{
                 email: user?.email,
                 name: user?.displayName,
                 photo: user?.photoURL,
                 time:(`${hours}:${minutes}:${seconds}`),
                 date:(`${month}-${day}-${year}`),
-                recommendationCount:0,
 
 
             }

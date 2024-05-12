@@ -36,7 +36,7 @@ const Queries = () => {
                </div>
                <div className="mt-7">
                 <p className="text-white">Date Posted : {info.queryUser.date}</p>
-                <p className="text-white">Recommendation : {info.queryUser.recommendationCount} </p>
+                <p className="text-white">Recommendation : {info.recommendationCount} </p>
                </div>
               
                 

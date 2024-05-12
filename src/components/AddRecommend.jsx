@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const AddRecommend = ({info}) => {
+
   // const{queryUser,_id,title,productName}=info
   const{user}=useContext(AuthContext)
   const currentTime = Date.now();
@@ -26,13 +27,14 @@ const handleAddRecommend=async e=>{
   const recoReason =form.recoReason.value;
   const queryTitle = info.title;
   const queryId = info._id;
+  const recoCount = info.queryUser.recommendationCount;
   const productName = info.productName;
   const userEmail = info.queryUser.email;
   const userName = info.queryUser.name;
   const recommenderEmail=user.email;
   const recommenderName = user.displayName;
   const recommendDate = (`${month}-${day}-${year}`)
-  const recommenderInfo ={recoTitle,recoImage,recoName,recoReason,queryTitle,queryId,productName,userEmail,userName,recommenderEmail,recommenderName,recommendDate}
+  const recommenderInfo ={recoTitle,recoImage,recoName,recoCount,recoReason,queryTitle,queryId,productName,userEmail,userName,recommenderEmail,recommenderName,recommendDate}
   console.log(recommenderInfo) 
 
   try{
