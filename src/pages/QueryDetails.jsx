@@ -17,7 +17,7 @@ const QueryDetails = () => {
             setRecommends(data)
         })
 
-    },[])
+    },[_id])
     return (
         <section className=" mt-16 dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
@@ -74,9 +74,9 @@ const QueryDetails = () => {
             {/* <AllRecommend></AllRecommend> */}
             
         </div>
-        <div>
+        <div >
             {
-                recommends?.map(reco=><AllRecommend key={reco._id}></AllRecommend>)
+                recommends?.map(reco=><AllRecommend key={reco._id} reco={reco}></AllRecommend>)
             }
         </div>
     </section>
