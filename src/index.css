@@ -5,8 +5,8 @@
 
 body{
     /* background-color: rgb(247, 214, 145); */
-    background-image:linear-gradient(rgba(17, 16, 16, 0.808),
-    rgba(0, 0, 0, 0.801)),  url(./assets/cover.jpg);
+    background-image:linear-gradient(rgba(29, 28, 28, 0.397),
+    rgba(10, 10, 10, 0.336)),  url(./assets/cover2.jpg);
     
     
     background-size: cover;

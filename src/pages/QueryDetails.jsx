@@ -50,7 +50,7 @@ const QueryDetails = () => {
                 </div>
                 <div>
                    
-                    <AddRecommend></AddRecommend>
+                    <AddRecommend info={info}></AddRecommend>
                 </div>
     
                
