@@ -1,10 +1,23 @@
 import { useLoaderData } from 'react-router-dom';
 import './Login.css'
 import AddRecommend from '../components/AddRecommend';
+import AllRecommend from '../components/AllRecommend';
+import { useEffect, useState } from 'react';
 
 const QueryDetails = () => {
     const info = useLoaderData();
-    const{productImage,queryUser,title,boycotting,productName,productBrand}=info || {}
+    const [recommends, setRecommends]=useState()
+    const{productImage,queryUser,title,boycotting,productName,productBrand,_id}=info || {}
+
+    useEffect(()=>{
+        fetch(`${import.meta.env.VITE_API_URL}/recommend/${_id}`)
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            setRecommends(data)
+        })
+
+    },[])
     return (
         <section className=" mt-16 dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
@@ -56,7 +69,15 @@ const QueryDetails = () => {
                
             </div>
             <p className='text-3xl font-bold mt-20 text-white text-center underline underline-offset-4'>All Recommendations</p>
+
+           
+            {/* <AllRecommend></AllRecommend> */}
             
+        </div>
+        <div>
+            {
+                recommends?.map(reco=><AllRecommend key={reco._id}></AllRecommend>)
+            }
         </div>
     </section>
     );

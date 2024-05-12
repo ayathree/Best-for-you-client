@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import '../pages/Login.css'
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddRecommend = ({info}) => {
   // const{queryUser,_id,title,productName}=info
@@ -12,6 +14,11 @@ const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
 const handleAddRecommend=async e=>{
   e.preventDefault();
+  if(user?.email === info.queryUser.email) return Swal.fire({
+       
+    text: "You are not permitted to recommend your own query",
+    icon: "error"
+  });
   const form = e.target;
   const recoTitle = form.recoTitle.value;
   const recoImage = form.recoImage.value;
@@ -27,6 +34,29 @@ const handleAddRecommend=async e=>{
   const recommendDate = (`${month}-${day}-${year}`)
   const recommenderInfo ={recoTitle,recoImage,recoName,recoReason,queryTitle,queryId,productName,userEmail,userName,recommenderEmail,recommenderName,recommendDate}
   console.log(recommenderInfo) 
+
+  try{
+    const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/recommend`, recommenderInfo)
+    console.log(data)
+    form.reset();
+    if (data.insertedId) {
+        
+        Swal.fire({
+       
+            text: "recommended successfully",
+            icon: "success"
+          });
+        // navigate('/myQue')
+    }
+}
+catch(err){
+    console.log(err)
+    Swal.fire({
+       
+        text: "An error occurred",
+        icon: "error"
+      });
+}
 
 }
     return (
