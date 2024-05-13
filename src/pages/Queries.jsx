@@ -1,11 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom";
-import './Login.css'
 import { useState } from "react";
+import './Login.css';
 
 const Queries = () => {
     const allInfos = useLoaderData();
     const [infos, setInfos] = useState(allInfos);
     const [ setSearch] = useState('');
+    const [gridLayout, setGridLayout] = useState('grid-3'); 
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -15,16 +16,20 @@ const Queries = () => {
         setSearch(searchText);
     }
 
+    const toggleGridLayout = (layout) => {
+        setGridLayout(layout);
+    };
+
     return (
         <div>
             <form onSubmit={handleSearch} className="join">
                 <input className="input input-bordered join-item" name="search" placeholder="Search by product name" />
                 <button className="btn join-item bg-green-500">Search</button>
             </form>
-            <div className="grid grid-cols-1 lg:grid-cols-3 justify-center items-center gap-10">
+            <div className={`grid ${gridLayout} justify-center items-center gap-10`}>
                 {infos.map(info => (
                     <div key={info._id} className="mt-16 p-2 overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
-                        <img className="object-cover rounded-lg w-full h-56" src={info.productImage} alt="avatar" />
+                         <img className="object-cover rounded-lg w-full h-56" src={info.productImage} alt="avatar" />
                         <div className="px-8 py-4 rounded-lg shadow-lg dark:bg-gray-800">
                             <div className="flex justify-center -mt-16 md:justify-end">
                                 <a target="_blank" href={info.queryUser.photo}>
@@ -52,6 +57,11 @@ const Queries = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div>
+                <button className="btn bg-blue-600 text-white" onClick={() => toggleGridLayout('grid-2')}>2 Column Grid</button>
+                <button className="btn bg-blue-600 text-white" onClick={() => toggleGridLayout('grid-3')}>3 Column Grid</button>
+                <button className="btn bg-blue-600 text-white" onClick={() => toggleGridLayout('grid-4')}>4 Column Grid</button>
             </div>
         </div>
     );
