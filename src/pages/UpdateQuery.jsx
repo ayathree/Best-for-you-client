@@ -42,7 +42,7 @@ const handleUpdateQuery= async e=>{
     console.log(newUpdateData)
 
     try{
-        const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/product/${_id}`, newUpdateData)
+        const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/product/${_id}`, newUpdateData, {withCredentials:true})
         console.log(data)
         form.reset();
         if (data.matchedCount) {

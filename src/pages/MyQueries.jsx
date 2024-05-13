@@ -16,7 +16,7 @@ const MyQueries = () => {
     },[user])
     const getData = async()=>{
         const {data} =await axios (
-            `${import.meta.env.VITE_API_URL}/products/${user?.email}`
+            `${import.meta.env.VITE_API_URL}/products/${user?.email}`,{withCredentials:true}
         )
       
         setInfos(data)

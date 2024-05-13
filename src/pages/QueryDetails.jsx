@@ -11,7 +11,7 @@ const QueryDetails = () => {
     const{productImage,queryUser,title,boycotting,productName,productBrand,_id,recommendationCount}=info || {}
 
     useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/recommend/${_id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/recommend/${_id}`,{credentials:'include'})
         .then(res=>res.json())
         .then(data=>{
             console.log(data)

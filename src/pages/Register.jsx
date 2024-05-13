@@ -21,6 +21,7 @@ const Register = () => {
 
         try{
             const result= await createUser(email,password)
+            
             console.log(result)
             await updateUser(name, image)
             form.reset();

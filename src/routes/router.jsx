@@ -56,12 +56,12 @@ const router = createBrowserRouter([
         {
             path:'/queDetails/:id',
             element:<PrivateRoute><QueryDetails></QueryDetails></PrivateRoute>,
-            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`)
+            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`,{credentials:"include"})
         },
         {
             path:'/updateQue/:id',
             element:<PrivateRoute><UpdateQuery></UpdateQuery></PrivateRoute>,
-            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`)
+            loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/product/${params.id}`,{credentials:'include'})
         }
 
       ]

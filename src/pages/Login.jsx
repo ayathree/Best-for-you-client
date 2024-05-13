@@ -4,6 +4,7 @@ import './Login.css'
 import { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 
@@ -14,7 +15,13 @@ const Login = () => {
 
     const handleGoogleLogin= async()=>{
         try{
-          await google()
+           
+          const result = await google()
+          console.log(result.user)
+          const {data}= await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+            email: result?.user?.email,
+          },{withCredentials: true})
+          console.log(data)
           navigate(location?.state? location.state:'/')
           Swal.fire({
                
@@ -47,6 +54,11 @@ const Login = () => {
         try{
             const result = await signIn(email,password)
             console.log(result)
+            console.log(result.user)
+            const {data}= await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+              email: result?.user?.email,
+            },{withCredentials: true})
+            console.log(data)
             navigate(location?.state? location.state:'/')
             Swal.fire({
                
