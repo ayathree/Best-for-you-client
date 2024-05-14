@@ -81,7 +81,9 @@ const QueryDetails = () => {
        <div >
            {
                recommends?.map(reco=><AllRecommend key={reco._id} reco={reco}></AllRecommend>)
+               
            }
+           
        </div>
    </section></Fade>
     );
