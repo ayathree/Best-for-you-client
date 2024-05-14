@@ -5,6 +5,7 @@ import help from '../assets/help.jpg'
 import Lottie from 'lottie-react';
 import anione from '../assets/lottie two.json';
 import anitwo from '../assets/lottie one.json'
+import { Fade, Slide } from 'react-awesome-reveal';
 
 const Home = () => {
     const loadedData = useLoaderData();
@@ -23,7 +24,7 @@ const Home = () => {
 </div>
            </div>
            <div>
-           <header className=" dark:bg-gray-900 mt-24">
+          <Slide> <header className=" dark:bg-gray-900 mt-24">
    
 
    <div className="container cover  flex flex-col  p-5 lg:p-0   lg:flex-row lg:items-center">
@@ -43,11 +44,11 @@ const Home = () => {
            <img className="object-cover w-[300px] h-[200px] lg:p-0 p-5 max-w-2xl rounded-md" src={help} alt="apple watch photo" />
        </div>
    </div>
-</header>
+</header></Slide>
            </div>
            <div>
-            <p>Recent Queries</p>
-            <div  className='grid lg:grid-cols-3 grid-cols-1  justify-center items-center gap-10'>
+            <p className='text-3xl font-bold text-white text-center underline underline-offset-2 mt-20 mb-16'>Recent Queries</p>
+            <Fade><div  className='grid lg:grid-cols-3 grid-cols-1  justify-center items-center gap-10'>
                 {
                     loadedData.slice(0,6).map(data=> <div key={data._id} className="flex max-w-md overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
                     <div className="w-1/3 bg-cover" style={{backgroundImage: `url(${data.productImage})`} }></div>
@@ -67,17 +68,17 @@ const Home = () => {
                 </div>)
                 }
 
-            </div>
+            </div></Fade>
            </div>
            <div>
            <div className="hero min-h-screen ">
   <div className="hero-content flex-col lg:flex-row">
   <Lottie animationData={anitwo}></Lottie>
-    <div>
+    <Fade><div>
       <h1 className="text-5xl font-bold text-white">A best alternative information getting website....</h1>
       <p className="py-6 text-white">If you want to some recommendation for best products you have to add your queries.For this please press the button bellow...</p>
      <Link to={'/myQue'}> <button className="btn btn-primary">Hi, wanna add your queries...?</button></Link>
-    </div>
+    </div></Fade>
   </div>
 </div>
 

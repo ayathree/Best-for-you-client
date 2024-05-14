@@ -3,6 +3,7 @@ import './Login.css'
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Slide } from 'react-awesome-reveal';
 
 const MyRecommend = () => {
     const{user}=useContext(AuthContext)
@@ -55,7 +56,7 @@ const MyRecommend = () => {
 
 
     return (
-        <section className="container px-4 mx-auto">
+        <Slide><section className="container px-4 mx-auto">
         
     
         <div className="flex flex-col mt-6">
@@ -136,7 +137,7 @@ const MyRecommend = () => {
         </div>
     
        
-    </section>
+    </section></Slide>
     );
 };
 

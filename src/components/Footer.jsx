@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="flex flex-wrap justify-center mt-6 -mx-4">
                
 
-                <p className='text-3xl font-bold'>best for you</p>
+                <p className='text-3xl text-white font-bold'>best for you</p>
             </div>
 
         </div>
@@ -22,18 +22,18 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-            <p className="text-sm text-gray-500 dark:text-gray-300">© Copyright 2024. All Rights Reserved.</p>
+            <p className="text-sm text-white dark:text-gray-300">© Copyright 2024. All Rights Reserved.</p>
 
             <div className="flex flex-row gap-5 -mx-2">
            <div>
           <a href="https://www.facebook.com">
-            <FaFacebook className='text-3xl'></FaFacebook>
+            <FaFacebook className='text-3xl text-white'></FaFacebook>
           </a>
           
            </div>
             <div>
                 <a href="https://www.linkedin.com/">
-            <FaLinkedin className='text-3xl' />
+            <FaLinkedin className='text-3xl text-white' />
             </a>
             </div>
             
