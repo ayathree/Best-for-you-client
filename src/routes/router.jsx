@@ -11,16 +11,19 @@ import PrivateRoute from "../provider/PrivateRoute";
 import AddQueries from "../pages/AddQueries";
 import QueryDetails from "../pages/QueryDetails";
 import UpdateQuery from "../pages/UpdateQuery";
+import Error from "../pages/Error";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element:<Root></Root>,
+      errorElement:<Error></Error>,
       children:[
         {
             path:'/',
-            element:<Home></Home>
+            element:<Home></Home>,
+            loader:()=>fetch(`${import.meta.env.VITE_API_URL}/products`)
     
         },
         {

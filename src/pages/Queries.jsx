@@ -30,7 +30,7 @@ const Queries = () => {
                 {infos.map(info => (
                     <div key={info._id} className="mt-16 p-2 overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
                          <img className="object-cover rounded-lg w-full h-56" src={info.productImage} alt="avatar" />
-                        <div className="px-8 py-4 rounded-lg shadow-lg dark:bg-gray-800">
+                        <div className="px-8 py-4 rounded-lg  dark:bg-gray-800">
                             <div className="flex justify-center -mt-16 md:justify-end">
                                 <a target="_blank" href={info.queryUser.photo}>
                                     <img className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400" alt="Testimonial avatar" src={info.queryUser.photo} />
