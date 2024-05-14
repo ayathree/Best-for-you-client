@@ -49,34 +49,22 @@ const Home = () => {
             <p>Recent Queries</p>
             <div  className='grid lg:grid-cols-3 grid-cols-1  justify-center items-center gap-10'>
                 {
-                    loadedData.slice(0,6).map(data=> <div key={data._id} className="mt-16 p-2 overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
-                    <img className="object-cover rounded-lg w-full h-56" src={data.productImage} alt="avatar" />
-                   <div className="px-8 py-4 rounded-lg  dark:bg-gray-800">
-                       <div className="flex justify-center -mt-16 md:justify-end">
-                           <a target="_blank" href={data.queryUser.photo}>
-                               <img className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400" alt="Testimonial avatar" src={data.queryUser.photo} />
-                           </a>
-                       </div>
-                       <div className="flex justify-end">
-                           <a href="#" className="text-lg font-medium text-blue-600 dark:text-blue-300" tabIndex="0" role="link">{data.queryUser.name}</a>
-                       </div>
-                       <div className="mt-2">
-                           <h2 className="text-xl font-semibold text-white dark:text-white md:mt-0">{data.productName}</h2>
-                           <p className="text-white text-sm">Brand: {data.productBrand}</p>
-                       </div>
-                       <div className="mt-7">
-                           <h2 className="text-xl font-semibold text-white dark:text-white md:mt-0">{data.title}</h2>
-                           <p className="mt-2 text-sm text-white dark:text-gray-200">{data.boycotting}</p>
-                       </div>
-                       <div className="mt-7">
-                           <p className="text-white">Date Posted: {data.queryUser.date}</p>
-                           <p className="text-white">Recommendation: {data.recommendationCount} </p>
-                       </div>
-                   </div>
-                   <div className="flex justify-end">
-                       <Link to={`/queDetails/${data._id}`}><button className="btn bg-blue-700 text-white">Recommend</button></Link>
-                   </div>
-               </div>)
+                    loadedData.slice(0,6).map(data=> <div key={data._id} className="flex max-w-md overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
+                    <div className="w-1/3 bg-cover" style={{backgroundImage: `url(${data.productImage})`} }></div>
+                
+                    <div className="w-2/3 p-4 md:p-4">
+                        <h1 className="text-xl font-bold text-white dark:text-white">{data.productName}</h1>
+                
+                        <p className="mt-2 text-sm text-white dark:text-gray-400">{data.title}</p>
+                
+                       
+                
+                        <div className="flex justify-between mt-3 item-center">
+                           
+                           <Link to={`/queDetails/${data._id}`}> <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-blue-700  rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">View</button></Link>
+                        </div>
+                    </div>
+                </div>)
                 }
 
             </div>
