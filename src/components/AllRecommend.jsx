@@ -1,9 +1,10 @@
 import '../pages/Login.css'
+import LikeUnlikeButton from './LikeUnlikeButton';
 
 const AllRecommend = ({reco}) => {
-    const{recoTitle,recoImage,recoName,recommendDate,recommenderName}=reco
+    const{_id,recoTitle,recoImage,recoName,recommendDate,recommenderName}=reco
     return (
-        <div className="flex  mt-10 overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="flex flex-row justify-between  mt-10 overflow-hidden cover rounded-lg shadow-lg dark:bg-gray-800">
         {/* <img'https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')`}}></div> */}
         <img className="h-[100px] w-[100px]" src={recoImage} alt="" />
     
@@ -18,6 +19,9 @@ const AllRecommend = ({reco}) => {
             <p className="text-xl font-bold text-white dark:text-white">Date : <span className="text-xs">{recommendDate}</span> </p>
         </div>
        </div>
+       <div className="p-4  md:p-4">
+        <LikeUnlikeButton recoId={_id} />
+      </div>
     </div>
     );
 };
